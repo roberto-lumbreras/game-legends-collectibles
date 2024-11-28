@@ -27,10 +27,12 @@ public class Product {
     private String name;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
-    private String image;
+    private String img;
     @Column(nullable = false)
     private BigDecimal price;
     @Column(nullable = false)
     private Integer stock;
+    /* @ManyToOne
+    @JoinColumn(name = "category_id")
+    Category category; */
 }
