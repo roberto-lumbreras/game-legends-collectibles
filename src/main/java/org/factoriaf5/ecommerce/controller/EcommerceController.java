@@ -1,5 +1,7 @@
 package org.factoriaf5.ecommerce.controller;
 
+import java.io.IOException;
+
 import org.factoriaf5.ecommerce.dto.ProductDTO;
 import org.factoriaf5.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
 @Controller
-@RequestMapping("ecommerce")
+@RequestMapping("/ecommerce")
 public class EcommerceController {
     @Autowired
     ProductService productService;
@@ -33,8 +37,8 @@ public class EcommerceController {
     }
 
     @PostMapping("/products/create")
-    public String create(@ModelAttribute ProductDTO productDTO) {
-        productService.createProduct(productDTO);
+    public String create(@ModelAttribute ProductDTO productDTO,@RequestParam MultipartFile img) throws IOException {
+        productService.createProduct(productDTO,img);
         return "list";
     }
     
