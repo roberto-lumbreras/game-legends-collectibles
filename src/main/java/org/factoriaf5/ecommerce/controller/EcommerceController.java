@@ -25,7 +25,8 @@ public class EcommerceController {
     ProductService productService;
 
     @GetMapping
-    public String home(){
+    public String home(Model model){
+        model.addAttribute("products",productService.findAllProducts());
         return "index";
     }
     

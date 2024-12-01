@@ -36,6 +36,7 @@ public class ProductService {
     }
 
     private void imageDeletionService(String imgUrl) {
+        imgUrl = System.getProperty("user.dir")+"/src/main/resources/static"+imgUrl;
         File img = new File(imgUrl);
         if(img.exists()){
             img.delete();
@@ -64,7 +65,7 @@ public class ProductService {
     }
 
     private String imageCreationService(MultipartFile img) throws IOException{
-        final String UPLOAD_DIR = System.getProperty("user.dir")+"/images";
+        final String UPLOAD_DIR = System.getProperty("user.dir")+"/src/main/resources/static/images";
         File uploadDir = new File(UPLOAD_DIR);
         System.out.println("ruta del directorio de carga de imagen -> "+uploadDir.getAbsolutePath());
         if(!uploadDir.exists()){
@@ -74,7 +75,7 @@ public class ProductService {
         uploadDir = new File(uploadDir,filename);
         System.out.println("ruta del archivo de imagen -> "+uploadDir.getAbsolutePath());
         img.transferTo(uploadDir);
-        return "images/"+filename;
+        return "/images/"+filename;
     }
 
 }
