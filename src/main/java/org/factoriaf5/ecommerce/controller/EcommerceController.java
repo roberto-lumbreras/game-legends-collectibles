@@ -66,6 +66,12 @@ public class EcommerceController {
         return "redirect:/ecommerce/products";
     }
     
+    @GetMapping("/products/{id}")
+    public String get(@PathVariable Long id, Model model) {
+        model.addAttribute("product",productService.findProductById(id));
+        return "product";
+    }
+    
     
     
 }
