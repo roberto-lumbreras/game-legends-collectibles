@@ -1,34 +1,34 @@
 package org.factoriaf5.ecommerce.security;
 
-import java.io.IOException;
 import java.util.Date;
 
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
+import io.jsonwebtoken.security.SecurityException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class JwtManager extends OncePerRequestFilter{
+public class JwtUtils{
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")
     private Long expiration;
-    private SecretKey key;
-    private JwtParser parser;
 
-    public JwtManager(){
-        this.key = Keys.hmacShaKeyFor(secret.getBytes());
-        this.parser = Jwts.parser().verifyWith(key).build();
+    public SecretKey key(){
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
+    }
+
+    public JwtParser parser(){
+        return Jwts.parser().verifyWith(key()).build();
     }
 
     public String generateToken(String username){
@@ -36,21 +36,11 @@ public class JwtManager extends OncePerRequestFilter{
         .subject(username)
         .issuedAt(new Date())
         .expiration(new Date(System.currentTimeMillis()+expiration))
-        .signWith(key)
+        .signWith(key())
         .compact();
     }
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
-        String token = getTokenFromRequest(request);
-        if(token!=null&&validateToken(token)){
-            
-        }
-
-    }
-
-    private String getTokenFromRequest(HttpServletRequest request){
+    public String getTokenFromRequest(HttpServletRequest request){
         String bearerToken = request.getHeader("Authorization");
         if(bearerToken!=null&&bearerToken.startsWith("Bearer ")){
             return bearerToken.substring(7);
@@ -61,10 +51,14 @@ public class JwtManager extends OncePerRequestFilter{
 
     public boolean validateToken(String token){
         try{
-            parser.parse(token);
+            parser().parse(token);
             return true;
-        }catch(Exception e){
+        }catch(ExpiredJwtException | MalformedJwtException | SecurityException | IllegalArgumentException e){
             return false;
         }
+    }
+
+    public String extractUsername(String token){
+        return parser().parseSignedClaims(token).getPayload().getSubject();
     }
 }
