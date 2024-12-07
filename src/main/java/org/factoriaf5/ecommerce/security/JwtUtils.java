@@ -14,6 +14,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Component
@@ -41,12 +42,15 @@ public class JwtUtils{
     }
 
     public String getTokenFromRequest(HttpServletRequest request){
-        String bearerToken = request.getHeader("Authorization");
-        if(bearerToken!=null&&bearerToken.startsWith("Bearer ")){
-            return bearerToken.substring(7);
-        }else{
-            return null;
+        Cookie[] cookies = request.getCookies();
+        if(cookies!=null){
+            for(Cookie cookie: cookies){
+                if(cookie.getName().equals("token")){
+                    return cookie.getValue();
+                }
+            }
         }
+        return null;
     }
 
     public boolean validateToken(String token){

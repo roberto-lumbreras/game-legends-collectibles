@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.thymeleaf.org">
 
 <head>
 
@@ -24,7 +24,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Spring Ecommerce</a>
+      <a class="navbar-brand" th:href="@{/ecommerce}">Spring Ecommerce</a>
 
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
+            <a class="nav-link" th:href="@{/ecommerce/auth/login}">Login</a>
           </li>
         </ul>
       </div>    
@@ -58,16 +58,16 @@
     </div>
 
     
-    <form  action="#" method="post">
+    <form th:action="@{/ecommerce/auth/login}" method="post">
       <div class="form-group">
-        <label for="email"> Email:  </label>      
-        <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su email" required autocomplete="off"> 
+        <label for="username"> Username:  </label>      
+        <input type="username" class="form-control" id="useraname" name="username" placeholder="Introduce your username" required autocomplete="off"> 
 
       </div>
 
       <div class="form-group">
         <label for="pwd"> Contraseña:</label>
-        <input type="password"  class="form-control" id="password" name="password" placeholder="Ingrese su contraseña" required>       
+        <input type="password"  class="form-control" id="password" name="password" placeholder="Introduce your password" required>       
       </div>
 
       <div class="form-group">
@@ -76,7 +76,7 @@
         </div>      
       </div>    
     </form>
-    <a href="registro.html" class="card-link">Si aún no tiene cuenta aqui puede registrarse</a>
+    <a th:href="@{/ecommerce/auth/register}" class="card-link">You don't have an account? Register here</a>
   </div>
   <!-- /.container -->
 

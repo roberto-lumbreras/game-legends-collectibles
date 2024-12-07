@@ -34,11 +34,11 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
             <li class="breadcrumb-item active">Ver Productos</li>
         </ol>
 
-        <a class="btn btn-primary" th:href="@{/ecommerce/products/create}"> Crear Producto</a>
+        <a class="btn btn-primary" th:href="@{/ecommerce/admin/products/create}"> Crear Producto</a>
         <h2>Productos</h2>
         <table class="table">
             <thead>
@@ -57,8 +57,8 @@
                     <td th:text="${product.description}"></td>
                     <td th:text="${product.stock}"></td>
                     <td th:text="${product.price}"></td>
-                    <td><a class="btn btn-warning" th:href="@{/ecommerce/products/edit/{id} (id=${product.id})}">Editar</a> </td>
-                    <td><a class="btn btn-danger" th:href="@{/ecommerce/products/delete/{id} (id=${product.id})}">Eliminar</a> </td>
+                    <td><a class="btn btn-warning" th:href="@{/ecommerce/admin/products/edit/{id} (id=${product.id})}">Editar</a> </td>
+                    <td><a class="btn btn-danger" th:href="@{/ecommerce/admin/products/delete/{id} (id=${product.id})}">Eliminar</a> </td>
                 </tr>
             </tbody>
         </table>

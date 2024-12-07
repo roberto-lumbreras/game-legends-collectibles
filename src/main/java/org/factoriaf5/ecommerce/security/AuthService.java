@@ -22,7 +22,7 @@ public class AuthService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
         return jwtUtils.generateToken(loginRequest.username());
     }
-    public String register(RegisterRequest registerRequest) {
+    public void register(RegisterRequest registerRequest) {
         User user = User.builder()
                 .username(registerRequest.username())
                 .password(passwordEncoder.encode(registerRequest.password()))
@@ -32,7 +32,6 @@ public class AuthService {
                 .phoneNumber(registerRequest.phoneNumber())
                 .build();
         userRepository.save(user);
-        return login(new LoginRequest(registerRequest.username(), registerRequest.password()));
     }
 
 }

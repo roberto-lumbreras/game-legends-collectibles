@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns="http://www.thymeleaf.org">
 
 <head>
 
@@ -24,7 +24,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Spring Ecommerce</a>
+      <a class="navbar-brand" th:href="@{/ecommerce}">Spring Ecommerce</a>
 
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -34,7 +34,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
+            <a class="nav-link" th:href="@{/ecommerce/auth/login}">Login</a>
           </li>
         </ul>
       </div>
@@ -56,25 +56,25 @@
         </div>
       </div>
     </div>
-    <form action="#" method="post">
+    <form th:action="@{/ecommerce/auth/register}" method="post">
       <div class="form-group">
-        <label for="nombres">Nombres:</label> <input type="text" class="form-control" id="nombre" name="nombre" required
-          placeholder="Ingrese sus nombres" autocomplete="off">
+        <label for="username">Username:</label> <input type="text" class="form-control" id="username" name="username" required
+          placeholder="Introduce your username" autocomplete="off">
       </div>
 
       <div class="form-group">
         <label for="email">Email:</label> <input type="email" class="form-control" id="email" name="email" required
-          placeholder="Ingrese su email" autocomplete="off">
+          placeholder="Introduce your email" autocomplete="off">
       </div>
 
       <div class="form-group">
-        <label for="direccion">Dirección:</label> <input type="text" class="form-control" id="direccion"
-          name="direccion" required placeholder="Ingrese su dirección" autocomplete="off">
+        <label for="address">Address:</label> <input type="text" class="form-control" id="address"
+          name="address" required placeholder="Introduce your address" autocomplete="off">
       </div>
 
       <div class="form-group">
-        <label for="pwd">Contraseña</label> <input type="password" class="form-control" id="password" name="password"
-          required placeholder="Ingrese su contraseña" autocomplete="off">
+        <label for="pwd">Password:</label> <input type="password" class="form-control" id="password" name="password"
+          required placeholder="Introduce your password" autocomplete="off">
       </div>
       <div class="col-sm-2">
         <button type="submit" class="btn btn-success">Guardar</button>

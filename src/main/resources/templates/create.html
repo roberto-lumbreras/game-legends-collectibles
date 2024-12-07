@@ -34,12 +34,12 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
             <li class="breadcrumb-item active">Create Products</li>
         </ol>
 
         <h2>Crear Producto</h2>
-        <form class="form-horizontal" th:action="@{/ecommerce/products/create}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" th:action="@{/ecommerce/admin/products/create}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">Name:</label>
                 <div class="col-sm-10">

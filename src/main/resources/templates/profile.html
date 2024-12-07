@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Spring eCommerce</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div th:include="template::header"></div>
+
+
+  <!-- Page Content -->
+  <div class="container">
+
+
+    <h3 th:text="${user.username}"></h3>
+    <h2>Profile</h2>
+
+
+    <form th:action="@{/ecommerce/profile{username} (username=${user.username})}" method="post">
+      <div class="form-group">
+        <label for="phoneNumber">Phone number:</label> <input type="text" class="form-control" id="phoneNumber"
+          name="phoneNumber" placeholder="Introduce your phone number" autocomplete="off"
+          th:value="${user.phoneNumber}">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label> <input type="email" class="form-control" id="email" name="email" 
+          placeholder="Introduce your email" autocomplete="off" th:value="${user.email}">
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address:</label> <input type="text" class="form-control" id="address" name="address"
+          placeholder="Introduce your address" autocomplete="off" th:value="${user.address}">
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
+    </form>
+
+  </div>
+
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <div th:include="template::footer"></div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

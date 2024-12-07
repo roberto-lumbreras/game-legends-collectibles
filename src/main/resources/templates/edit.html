@@ -34,12 +34,12 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
             <li class="breadcrumb-item active">Actualizar Producto</li>
         </ol>
 
         <h2>Actualizar Producto</h2>
-        <form class="form-horizontal" th:action="@{/ecommerce/products/edit/{id} (id=${product.id})}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" th:action="@{/ecommerce/admin/products/edit/{id} (id=${product.id})}" method="post" enctype="multipart/form-data">
             <!--input type="hidden" name="id" value=""-->
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">name:</label>

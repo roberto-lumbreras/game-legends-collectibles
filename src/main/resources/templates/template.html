@@ -18,7 +18,21 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link" th:href="@{/ecommerce/auth/login}">Login</a></li>
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()"><a
+                        class="nav-link dropdown-toggle" href="#"
+                        id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"> MENU </a>
+                        <div class="dropdown-menu"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/ecommerce/admin/products}">Products</a>
+                            <a class="dropdown-item" th:href="@{/ecommerce/profile}">Profile</a> 
+                            <form th:action="@{/ecommerce/auth/logout}" method="post" style="display: none;" id="logoutForm">
+                                <button type="submit" style="display: none;"></button>
+                            </form>
+                            <a class="dropdown-item" th:href="'javascript:void(0);'" onclick="document.getElementById('logoutForm').submit();">Logout</a> 
+ 
+                        </div></li>
                 </ul>
             </div>
         </div>
