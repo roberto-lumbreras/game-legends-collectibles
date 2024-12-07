@@ -33,7 +33,7 @@
     <h2>Profile</h2>
 
 
-    <form th:action="@{/ecommerce/profile{username} (username=${user.username})}" method="post">
+    <form th:action="@{/ecommerce/profile/{username} (username=${user.username})}" method="post">
       <div class="form-group">
         <label for="phoneNumber">Phone number:</label> <input type="text" class="form-control" id="phoneNumber"
           name="phoneNumber" placeholder="Introduce your phone number" autocomplete="off"

@@ -8,6 +8,7 @@ import org.factoriaf5.ecommerce.model.User;
 import org.factoriaf5.ecommerce.service.ProductService;
 import org.factoriaf5.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,9 +98,15 @@ public class EcommerceController {
         return "profile";
     }
 
-    @PostMapping("/profile{username}")
+    @PostMapping("/profile/{username}")
     public String profile(@PathVariable String username, @ModelAttribute UserDTO userDTO) {
-        userService.save(username,userDTO);
+        String signedUserUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        boolean isAdmin = SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().anyMatch(x -> x.getAuthority().equals(User.Role.ROLE_ADMIN.name()));
+        if(signedUserUsername.equals(username)||isAdmin){
+            userService.save(username,userDTO);
+        }else{
+            throw new AccessDeniedException("");
+        }
         return "redirect:/ecommerce";
     }
     

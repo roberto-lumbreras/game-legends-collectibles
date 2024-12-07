@@ -44,10 +44,9 @@ public class SecurityConfig{
         http.httpBasic(x -> x.disable());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(x -> x
-            //.requestMatchers("/ecommerce/auth/**").permitAll()
-            .requestMatchers("/ecommerce/admin/**").hasRole(User.Role.ADMIN.name())
+            .requestMatchers("/ecommerce/profile","/ecommerce/profile/**").authenticated()
+            .requestMatchers("/ecommerce/admin/**").hasAuthority(User.Role.ROLE_ADMIN.name())
             .requestMatchers("/**").permitAll()
-            //.requestMatchers("/ecommerce/**").hasAnyRole(User.Role.ADMIN.name(),User.Role.USER.name())
             .anyRequest().authenticated());
         return http.build();
     }
@@ -59,7 +58,7 @@ public class SecurityConfig{
             return org.springframework.security.core.userdetails.User.builder()
             .username(user.getUsername())
             .password(user.getPassword())
-            .authorities("ROLE_"+user.getRole().name())
+            .authorities(user.getRole().name())
             .build();
         };
     }
@@ -72,7 +71,7 @@ public class SecurityConfig{
     @Bean
     public CommandLineRunner runner(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return x -> {
-            User rootUser = User.builder().role(User.Role.ADMIN).username("admin").email("mockemail@mail.com").password(passwordEncoder.encode("password")).build();
+            User rootUser = User.builder().role(User.Role.ROLE_ADMIN).username("admin").email("mockemail@mail.com").password(passwordEncoder.encode("password")).build();
             userRepository.save(rootUser);
         };
     }

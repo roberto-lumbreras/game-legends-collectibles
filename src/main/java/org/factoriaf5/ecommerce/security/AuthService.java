@@ -27,7 +27,7 @@ public class AuthService {
                 .username(registerRequest.username())
                 .password(passwordEncoder.encode(registerRequest.password()))
                 .address(registerRequest.address())
-                .role(User.Role.USER)
+                .role(User.Role.ROLE_USER)
                 .email(registerRequest.email())
                 .phoneNumber(registerRequest.phoneNumber())
                 .build();
