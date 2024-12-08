@@ -2,6 +2,8 @@ package org.factoriaf5.ecommerce.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -10,8 +12,11 @@ import org.factoriaf5.ecommerce.CookieUtils;
 import org.factoriaf5.ecommerce.dto.CartItem;
 import org.factoriaf5.ecommerce.dto.ProductDTO;
 import org.factoriaf5.ecommerce.dto.UserDTO;
+import org.factoriaf5.ecommerce.model.Order;
+import org.factoriaf5.ecommerce.model.OrderDetail;
 import org.factoriaf5.ecommerce.model.Product;
 import org.factoriaf5.ecommerce.model.User;
+import org.factoriaf5.ecommerce.service.OrderService;
 import org.factoriaf5.ecommerce.service.ProductService;
 import org.factoriaf5.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +39,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
-
-
-
-
-
 @Controller
 @RequestMapping("/ecommerce")
 public class EcommerceController {
@@ -49,6 +48,8 @@ public class EcommerceController {
     UserService userService;
     @Autowired
     CookieUtils cookieUtils;
+    @Autowired
+    OrderService orderService;
 
     @GetMapping
     public String home(Model model){
@@ -129,7 +130,7 @@ public class EcommerceController {
     }
 
     @PostMapping("/cart/add/{productId}")
-    public String addToCart(@PathVariable Long productId, @RequestParam Integer amount, HttpServletResponse response, HttpServletRequest request) throws JsonProcessingException, DecodingException, IOException {
+    public String addToCart(@PathVariable Long productId, @RequestParam Integer quantity, HttpServletResponse response, HttpServletRequest request) throws JsonProcessingException, DecodingException, IOException {
         List<CartItem> cartItems = cookieUtils.getCartProductsFromRequestCookie(request);
         Product p = productService.findProductById(productId);
         if(p!=null){
@@ -137,11 +138,11 @@ public class EcommerceController {
             for(CartItem item:cartItems){
                 if(Objects.equals(item.getProductId(), productId)){
                     productExists = true;
-                    item.setAmount(item.getAmount()+amount);
+                    item.setQuantity(item.getQuantity()+quantity);
                 }
             }
             if(!productExists){
-                cartItems.add(new CartItem(productId, amount, p.getPrice()));
+                cartItems.add(new CartItem(productId, quantity, p.getPrice()));
             }
         }
         Cookie cookie = cookieUtils.generateCartCookie(cartItems);
@@ -157,7 +158,7 @@ public class EcommerceController {
         for(CartItem item:cartItems){
             p = productService.findProductById(item.getProductId());
             item.setProductName(p.getName());
-            total = total.add(p.getPrice().multiply(new BigDecimal(item.getAmount())));
+            total = total.add(p.getPrice().multiply(new BigDecimal(item.getQuantity())));
         }
         model.addAttribute("cart",cartItems);
         model.addAttribute("total",total);
@@ -192,13 +193,42 @@ public class EcommerceController {
         for(CartItem item:cartItems){
             p = productService.findProductById(item.getProductId());
             item.setProductName(p.getName());
-            total = total.add(p.getPrice().multiply(new BigDecimal(item.getAmount())));
+            total = total.add(p.getPrice().multiply(new BigDecimal(item.getQuantity())));
         }
         model.addAttribute("cart",cartItems);
         model.addAttribute("total",total);
         model.addAttribute("user",userDTO);
         return "order-summary";
     }
+
+    @GetMapping("/save-order")
+    public String saveOrder(HttpServletRequest request) {
+        List<CartItem> cartItems = cookieUtils.getCartProductsFromRequestCookie(request);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findByUsername(username);
+        List<OrderDetail> details= new ArrayList<>();
+        OrderDetail detail;
+        BigDecimal totalAmount = new BigDecimal(0);
+        for(CartItem item:cartItems){
+            detail = OrderDetail.builder()
+            .product(productService.findProductById(item.getProductId()))
+            .quantity(item.getQuantity())
+            .unitPrice(item.getUnitPrice())
+            .build();
+            details.add(detail);
+            totalAmount = totalAmount.add(item.getUnitPrice().multiply(new BigDecimal(item.getQuantity())));
+        }
+        Order order = Order.builder()
+            .createdAt(LocalDateTime.now())
+            .orderNumber(System.currentTimeMillis())
+            .totalAmount(totalAmount)
+            .details(details)
+            .user(user)
+            .build();
+        orderService.save(order);
+        return "redirect:/ecommerce";
+    }
+    
     
     
     

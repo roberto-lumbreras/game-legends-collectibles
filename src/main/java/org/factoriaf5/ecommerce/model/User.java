@@ -39,9 +39,6 @@ public class User{
     private String email;
     @Column(nullable = false)
     private String password;
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    List<Order> orders;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;

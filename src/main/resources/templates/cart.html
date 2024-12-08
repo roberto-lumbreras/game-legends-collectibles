@@ -48,7 +48,7 @@
                 <tr>
                   <th scope="col">Product</th>
                   <th scope="col">Price</th>
-                  <th scope="col">Amount</th>
+                  <th scope="col">Quantity</th>
                   <th scope="col">Total</th>
                   <th scope="col"></th>
                 </tr>
@@ -57,8 +57,8 @@
                 <tr th:each="item:${cart}">
                   <td th:text = "${item.productName}">Product</td>
                   <td th:text = "${item.unitPrice}+€">Price</td>
-                  <td th:text = "${item.amount}">Amount</td>
-                  <td th:text = "${item.amount}*${item.unitPrice}+€">Total</td>
+                  <td th:text = "${item.quantity}">Quantity</td>
+                  <td th:text = "${item.quantity}*${item.unitPrice}+€">Total</td>
                   <td><a th:href="@{/ecommerce/cart/remove/{productId} (productId = ${item.productId})}" class="btn btn-danger">Remove</a></td>
                 </tr>
               </tbody>

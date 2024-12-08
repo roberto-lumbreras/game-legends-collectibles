@@ -32,7 +32,4 @@ public class Product {
     private BigDecimal price;
     @Column(nullable = false)
     private Integer stock;
-    /* @ManyToOne
-    @JoinColumn(name = "category_id")
-    Category category; */
 }

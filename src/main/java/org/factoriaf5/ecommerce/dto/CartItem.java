@@ -13,13 +13,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CartItem {
     private Long productId;
-    private Integer amount;
+    private Integer quantity;
     private BigDecimal unitPrice;
     private String productName;
 
-    public CartItem(Long productId, Integer amount, BigDecimal unitPrice) {
+    public CartItem(Long productId, Integer quantity, BigDecimal unitPrice) {
         this.productId = productId;
-        this.amount = amount;
+        this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
     
