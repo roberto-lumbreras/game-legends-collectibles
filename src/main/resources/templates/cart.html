@@ -30,12 +30,12 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Spring eCommerce <small>Carrito</small>
+        Spring eCommerce <small>Cart</small>
       </h1>
 
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Carrito</li>
+        <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
+        <li class="breadcrumb-item active">Cart</li>
       </ol>
 
       <!-- Blog Post -->
@@ -46,20 +46,20 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Producto</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Cantidad</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Amount</th>
                   <th scope="col">Total</th>
-                  <th scope="col">Acción</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td >Nombre</td>
-                  <td >Precio</td>
-                  <td>Cantidad</td>
-                  <td >Total</td>
-                  <td><a href="#" class="btn btn-danger">Quitar</a></td>
+                <tr th:each="item:${cart}">
+                  <td th:text = "${item.productName}">Product</td>
+                  <td th:text = "${item.unitPrice}+€">Price</td>
+                  <td th:text = "${item.amount}">Amount</td>
+                  <td th:text = "${item.amount}*${item.unitPrice}+€">Total</td>
+                  <td><a th:href="@{/ecommerce/cart/remove/{productId} (productId = ${item.productId})}" class="btn btn-danger">Remove</a></td>
                 </tr>
               </tbody>
             </table>
@@ -69,8 +69,9 @@
             <h2 class="card-title">SUBTOTAL</h2>
 
             <ul class="list-group">
-              <li class="list-group-item"><h5>Total: $ 10</h5></li>
-              <a href="resumenorden.html" class="btn btn-dark">Ver Orden</a>
+              <li class="list-group-item"><h5 th:text = "${total}+€"></h5></li>
+              <a sec:authorize="isAuthenticated()" th:href="@{/ecommerce/order-summary}" class="btn btn-dark">See order</a>
+              <a sec:authorize="isAnonymous()" th:href="@{/ecommerce/auth/login}" class="btn btn-dark">Log in to place an order</a>
             </ul>
           </div>
 

@@ -47,7 +47,7 @@
               </a>
             </div>
             <div class="col-lg-6">
-              <form action="carrito.html" method="POST">
+              <form th:action="@{/ecommerce/cart/add/{productId} (productId=${product.id})}" method="POST">
                 <h2 class="card-title" th:text="${product.name}">Nombre producto</h2>
 
                 <ul class="list-group">
@@ -56,7 +56,7 @@
                     <p  th:text="'Description: '+${product.description}">Descripción:</p>
                   </li>
                   <li class="list-group-item"><h6>
-                    Amount: <input type="number" id="stock" name="stock" autocomplete="off"
+                    Amount: <input type="number" id="amount" name="amount" autocomplete="off"
                     min="1" max="5" value="1">
                   </h6></li>
                 </ul>

@@ -44,7 +44,7 @@ public class SecurityConfig{
         http.httpBasic(x -> x.disable());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(x -> x
-            .requestMatchers("/ecommerce/profile","/ecommerce/profile/**").authenticated()
+            .requestMatchers("/ecommerce/profile","/ecommerce/profile/**","/ecommerce/order-summary").authenticated()
             .requestMatchers("/ecommerce/admin/**").hasAuthority(User.Role.ROLE_ADMIN.name())
             .requestMatchers("/**").permitAll()
             .anyRequest().authenticated());
@@ -71,7 +71,13 @@ public class SecurityConfig{
     @Bean
     public CommandLineRunner runner(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return x -> {
-            User rootUser = User.builder().role(User.Role.ROLE_ADMIN).username("admin").email("mockemail@mail.com").password(passwordEncoder.encode("password")).build();
+            User rootUser = User.builder()
+                .role(User.Role.ROLE_ADMIN)
+                .username("admin")
+                .email("mockemail@mail.com")
+                .address("mockAddress")
+                .phoneNumber("mockPhoneNumber")
+                .password(passwordEncoder.encode("password")).build();
             userRepository.save(rootUser);
         };
     }

@@ -17,7 +17,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/ecommerce/cart}">Cart</a></li>
                     <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link" th:href="@{/ecommerce/auth/login}">Login</a></li>
                     <li class="nav-item dropdown" sec:authorize="isAuthenticated()"><a
                         class="nav-link dropdown-toggle" href="#"
