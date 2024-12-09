@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Spring eCommerce</title>
+  <title>GameLegends Collectibles</title>
 
 
   <!-- Bootstrap core CSS -->
@@ -30,11 +30,11 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Spring eCommerce <small>Cart</small>
+        GameLegends Collectibles <small>Cart</small>
       </h1>
 
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
         <li class="breadcrumb-item active">Cart</li>
       </ol>
 
@@ -59,19 +59,19 @@
                   <td th:text = "${item.unitPrice}+€">Price</td>
                   <td th:text = "${item.quantity}">Quantity</td>
                   <td th:text = "${item.quantity}*${item.unitPrice}+€">Total</td>
-                  <td><a th:href="@{/ecommerce/cart/remove/{productId} (productId = ${item.productId})}" class="btn btn-danger">Remove</a></td>
+                  <td><a th:href="@{/cart/remove/{productId} (productId = ${item.productId})}" class="btn btn-danger">Remove</a></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <div class="col-lg-3">
-            <h2 class="card-title">SUBTOTAL</h2>
+            <h2 class="card-title">Total amount</h2>
 
             <ul class="list-group">
               <li class="list-group-item"><h5 th:text = "${total}+€"></h5></li>
-              <a sec:authorize="isAuthenticated()" th:href="@{/ecommerce/order-summary}" class="btn btn-dark">See order</a>
-              <a sec:authorize="isAnonymous()" th:href="@{/ecommerce/auth/login}" class="btn btn-dark">Log in to place an order</a>
+              <a sec:authorize="isAuthenticated()" th:href="@{/order-summary}" class="btn btn-dark">See order</a>
+              <a sec:authorize="isAnonymous()" th:href="@{/auth/login}" class="btn btn-dark">Log in to place an order</a>
             </ul>
           </div>
 

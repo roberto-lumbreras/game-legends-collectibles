@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Spring eCommerce</title>
+  <title>GameLegends Collectibles</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h2>Ingresar</h2>
+            <h2>Log in</h2>
 
           </div>
         </div>
@@ -42,7 +42,7 @@
     </div>
 
     
-    <form th:action="@{/ecommerce/auth/login}" method="post">
+    <form th:action="@{/auth/login}" method="post">
       <div class="form-group">
         <label for="username"> Username:  </label>      
         <input type="username" class="form-control" id="useraname" name="username" placeholder="Introduce your username" required autocomplete="off"> 
@@ -50,17 +50,17 @@
       </div>
 
       <div class="form-group">
-        <label for="pwd"> Contraseña:</label>
+        <label for="pwd"> Password:</label>
         <input type="password"  class="form-control" id="password" name="password" placeholder="Introduce your password" required>       
       </div>
 
       <div class="form-group">
         <div class="col-sm-2">
-          <button type="submit" class="btn btn-dark"> <span class="glyphicon glyphicon-ok"></span> Ingresar</button>
+          <button type="submit" class="btn btn-dark"> <span class="glyphicon glyphicon-ok"></span> Log in</button>
         </div>      
       </div>    
     </form>
-    <a th:href="@{/ecommerce/auth/register}" class="card-link">You don't have an account? Register here</a>
+    <a th:href="@{/auth/register}" class="card-link">New here? Register here</a>
   </div>
   <!-- /.container -->
 

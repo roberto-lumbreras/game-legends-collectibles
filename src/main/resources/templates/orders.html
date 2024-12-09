@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Spring eCommerce</title>
+  <title>GameLegends Collectibles</title>
 
 
   <!-- Bootstrap core CSS -->
@@ -30,12 +30,12 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Spring eCommerce <small>Compras</small>
+        GameLegends Collectibles <small>Orders</small>
       </h1>
 
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
-        <li class="breadcrumb-item active">Compras</li>
+        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+        <li class="breadcrumb-item active">Orders</li>
       </ol>
 
       <!-- Blog Post -->
@@ -57,7 +57,7 @@
                   <td th:text="${order.orderNumber}"></td>
                   <td th:text="${order.createdAt}"></td>
                   <td th:text="${order.totalAmount}+€"></td>
-                  <td><a th:href="@{/ecommerce}" class="btn btn-success">Ver Detalle</a></td>
+                  <td><a th:href="@{/}" class="btn btn-success">See Details</a></td>
                 </tr>
               </tbody>
             </table>

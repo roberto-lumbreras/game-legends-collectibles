@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Spring eCommerce</title>
+    <title>GameLegends Collectibles</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -30,28 +30,28 @@
 
         <!-- Page Heading/Breadcrumbs -->
         <h1 class="mt-4 mb-3">
-            Spring eCommerce <small>Products</small>
+            GameLegends Collectibles <small>Products</small>
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
             <li class="breadcrumb-item active">Create Products</li>
         </ol>
 
         <h2>Crear Producto</h2>
-        <form class="form-horizontal" th:action="@{/ecommerce/admin/products/create}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" th:action="@{/admin/products/create}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">Name:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="name" name="name"
-                        placeholder="Ingrese el name del producto" autocomplete="off" required>
+                        placeholder="Introduce product name" autocomplete="off" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="description">Description:</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="description" name="description"
-                        placeholder="Ingrese la description del producto" required autocomplete="off"> </textarea>
+                        placeholder="Introduce product description" required autocomplete="off"> </textarea>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                 <label class="control-label col-sm-2" for="stock">Stock:</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" id="stock" name="stock"
-                        placeholder="Ingrese la stock del producto" required autocomplete="off">
+                        placeholder="Introduce product stock" required autocomplete="off">
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
                 <label class="control-label col-sm-2" for="price">Price:</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" step="any" id="price" name="price"
-                        placeholder="Ingrese el price del producto" autocomplete="off" required>
+                        placeholder="Introduce product price" autocomplete="off" required>
                 </div>
             </div>
 

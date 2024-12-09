@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Spring eCommerce</title>
+    <title>GameLegends Collectibles</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -30,25 +30,25 @@
 
         <!-- Page Heading/Breadcrumbs -->
         <h1 class="mt-4 mb-3">
-            Spring eCommerce <small>Productos</small>
+            GameLegends Collectibles <small>Products</small>
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
-            <li class="breadcrumb-item active">Ver Productos</li>
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item active">See Products</li>
         </ol>
 
-        <a class="btn btn-primary" th:href="@{/ecommerce/admin/products/create}"> Crear Producto</a>
+        <a class="btn btn-primary" th:href="@{/admin/products/create}"> Create Product</a>
         <h2>Productos</h2>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Inventario</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Acción</th>
-                    <th scope="col">Acción</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,8 +57,8 @@
                     <td th:text="${product.description}"></td>
                     <td th:text="${product.stock}"></td>
                     <td th:text="${product.price}"></td>
-                    <td><a class="btn btn-warning" th:href="@{/ecommerce/admin/products/edit/{id} (id=${product.id})}">Editar</a> </td>
-                    <td><a class="btn btn-danger" th:href="@{/ecommerce/admin/products/delete/{id} (id=${product.id})}">Eliminar</a> </td>
+                    <td><a class="btn btn-warning" th:href="@{/admin/products/edit/{id} (id=${product.id})}">Editar</a> </td>
+                    <td><a class="btn btn-danger" th:href="@{/admin/products/delete/{id} (id=${product.id})}">Eliminar</a> </td>
                 </tr>
             </tbody>
         </table>

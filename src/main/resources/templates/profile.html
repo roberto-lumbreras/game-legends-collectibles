@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Spring eCommerce</title>
+  <title>GameLegends Collectibles</title>
 
 
   <!-- Bootstrap core CSS -->
@@ -33,7 +33,7 @@
     <h2>Profile</h2>
 
 
-    <form th:action="@{/ecommerce/profile/{username} (username=${user.username})}" method="post">
+    <form th:action="@{/profile/{username} (username=${user.username})}" method="post">
       <div class="form-group">
         <label for="phoneNumber">Phone number:</label> <input type="text" class="form-control" id="phoneNumber"
           name="phoneNumber" placeholder="Introduce your phone number" autocomplete="off"
@@ -50,7 +50,7 @@
           placeholder="Introduce your address" autocomplete="off" th:value="${user.address}">
       </div>
       <div class="col-sm-2">
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="submit" class="btn btn-success">Save</button>
       </div>
     </form>
 

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Spring eCommerce</title>
+    <title>GameLegends Collectibles</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -30,19 +30,19 @@
 
         <!-- Page Heading/Breadcrumbs -->
         <h1 class="mt-4 mb-3">
-            Spring eCommerce <small>Productos</small>
+            GameLegends Collectibles <small>Products</small>
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a th:href="@{/ecommerce}">Home</a></li>
-            <li class="breadcrumb-item active">Actualizar Producto</li>
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item active">Update product</li>
         </ol>
 
         <h2>Actualizar Producto</h2>
-        <form class="form-horizontal" th:action="@{/ecommerce/admin/products/edit/{id} (id=${product.id})}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" th:action="@{/admin/products/edit/{id} (id=${product.id})}" method="post" enctype="multipart/form-data">
             <!--input type="hidden" name="id" value=""-->
             <div class="form-group">
-                <label class="control-label col-sm-2" for="name">name:</label>
+                <label class="control-label col-sm-2" for="name">Name:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="name" name="name"
                         placeholder="Ingrese el name del producto" required autocomplete="off" th:value="${product.name}">
@@ -50,18 +50,18 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="description">Descripción:</label>
+                <label class="control-label col-sm-2" for="description">Description:</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="description" name="description"
-                        placeholder="Ingrese la description del producto" required autocomplete="off" th:text="${product.description}"> </textarea>
+                        placeholder="Introduce product description" required autocomplete="off" th:text="${product.description}"> </textarea>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="stock">stock:</label>
+                <label class="control-label col-sm-2" for="stock">Stock:</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" id="stock" name="stock"
-                        placeholder="Ingrese la stock del producto" required autocomplete="off" th:value="${product.stock}">
+                        placeholder="Introduce product stock" required autocomplete="off" th:value="${product.stock}">
                 </div>
             </div>
 
@@ -69,12 +69,12 @@
                 <label class="control-label col-sm-2" for="price">price:</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" step="any" id="price" name="price"
-                        placeholder="Ingrese el price del producto" required autocomplete="off" th:value="${product.price}">
+                        placeholder="Introduce product price" required autocomplete="off" th:value="${product.price}">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="img">Imagen:</label>
+                <label class="control-label col-sm-2" for="img">Image:</label>
                 <div class="col-sm-10">
                     <input type="file" class="form-control-file" id="img" name="img">
                 </div>
@@ -82,7 +82,7 @@
 
             <div class="row">
                 <div class="col-sm-2">
-                    <button type="submit" class="btn btn-success"> Guardar</button>
+                    <button type="submit" class="btn btn-success"> Save</button>
                 </div>
             </div>
 

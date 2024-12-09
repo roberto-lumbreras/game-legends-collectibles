@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.factoriaf5</groupId>
-	<artifactId>ecommerce</artifactId>
+	<artifactId>game-legends-collectibles</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ecommerce</name>
+	<name>game-legends-collectibles</name>
 	<description>Demo project for Spring Boot</description>
 	<url />
 	<licenses>

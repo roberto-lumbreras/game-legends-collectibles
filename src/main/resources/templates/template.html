@@ -2,7 +2,7 @@
 <div th:fragment="header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" th:href="@{/ecommerce}">Spring eCommerce</a>
+            <a class="navbar-brand" th:href="@{/}">GameLegends Collectibles</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,18 +10,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" th:href="@{/ecommerce/cart}">Cart</a></li>
-                    <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link" th:href="@{/ecommerce/auth/login}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/cart}">Cart</a></li>
+                    <li class="nav-item" sec:authorize="isAnonymous()"><a class="nav-link" th:href="@{/auth/login}">Login</a></li>
                     <li class="nav-item dropdown" sec:authorize="isAuthenticated()"><a
                         class="nav-link dropdown-toggle" href="#"
                         id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"> MENU </a>
+                        aria-haspopup="true" aria-expanded="false"> Menu </a>
                         <div class="dropdown-menu"
                             aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/ecommerce/admin/products}">Products</a>
-                            <a class="dropdown-item" th:href="@{/ecommerce/profile}">Profile</a>
-                            <a class="dropdown-item" th:href="@{/ecommerce/orders}">Orders</a>  
-                            <form th:action="@{/ecommerce/auth/logout}" method="post" style="display: none;" id="logoutForm">
+                            <a class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/products}">Products</a>
+                            <a class="dropdown-item" th:href="@{/profile}">Profile</a>
+                            <a class="dropdown-item" th:href="@{/orders}">Orders</a>  
+                            <form th:action="@{/auth/logout}" method="post" style="display: none;" id="logoutForm">
                                 <button type="submit" style="display: none;"></button>
                             </form>
                             <a class="dropdown-item" th:href="'javascript:void(0);'" onclick="document.getElementById('logoutForm').submit();">Logout</a> 
@@ -38,7 +38,7 @@
 <div th:fragment="footer">
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Spring eCommerce 2024</p>
+            <p class="m-0 text-center text-white">Copyright &copy; GameLegends Collectibles 2024</p>
         </div>
         <!-- /.container -->
     </footer>

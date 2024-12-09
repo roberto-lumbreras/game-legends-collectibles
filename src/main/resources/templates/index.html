@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Spring eCommerce</title>
+    <title>GameLegends Collectibles</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -29,8 +29,8 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron my-4">
-            <h1 class="display-3">Bienvenido a Spring Ecommerce 2024</h1>
-            <p class="lead">Tu tienda de productos en Línea</p>
+            <h1 class="display-3">Welcome to GameLegends Collectibles</h1>
+            <p class="lead">Discover our exclusive collection of action figures and statues from your favorite video game franchises</p>
         </header>
 
         <!-- Page Features -->
@@ -43,7 +43,7 @@
                         <p class="card-text" th:text="${product.name}"></p>
                     </div>
                     <div class="card-footer">
-                        <a th:href="@{/ecommerce/products/{id} (id=${product.id})}" class="btn btn-success">Ver producto</a>
+                        <a th:href="@{/products/{id} (id=${product.id})}" class="btn btn-success">See product</a>
                     </div>
                 </div>
             </div>
