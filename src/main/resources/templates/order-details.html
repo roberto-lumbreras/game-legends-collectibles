@@ -34,9 +34,9 @@
       </h1>
 
       <ol class="breadcrumb">
-        <li class="breadcrumb-detail"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-detail"><a href="compras.html">Orders</a></li>
-        <li class="breadcrumb-detail active">Order details</li>
+        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/orders}">Orders</a></li>
+        <li class="breadcrumb-item active">Order details</li>
       </ol>
 
       <!-- Blog Post -->
@@ -55,10 +55,10 @@
               </thead>
               <tbody>
                 <tr th:each="detail:${details}">
-                  <td th:text="${detail.productName}">Product</td>
+                  <td th:text="${detail.product.name}">Product</td>
                   <td th:text="${detail.unitPrice}+€">Price</td>
                   <td th:text="${detail.quantity}">Quantity</td>
-                  <td th:text="${detail.totalAmount}+€">Total</td>
+                  <td th:text="${detail.quantity}*${detail.unitPrice}+€">Total</td>
                 </tr>
               </tbody>
             </table>

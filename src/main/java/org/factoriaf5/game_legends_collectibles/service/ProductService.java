@@ -38,7 +38,7 @@ public class ProductService {
     private void imageDeletionService(String imgUrl) {
         imgUrl = System.getProperty("user.dir")+"/src/main/resources/static"+imgUrl;
         File img = new File(imgUrl);
-        if(img.exists()){
+        if(img.exists()&&!imgUrl.contains("default")){
             img.delete();
         }
     }

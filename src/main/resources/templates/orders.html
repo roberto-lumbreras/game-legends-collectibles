@@ -57,7 +57,7 @@
                   <td th:text="${order.orderNumber}"></td>
                   <td th:text="${order.createdAt}"></td>
                   <td th:text="${order.totalAmount}+€"></td>
-                  <td><a th:href="@{/}" class="btn btn-success">See Details</a></td>
+                  <td><a th:href="@{/orders/{order-number}(order-number=${order.orderNumber})}" class="btn btn-success">See Details</a></td>
                 </tr>
               </tbody>
             </table>

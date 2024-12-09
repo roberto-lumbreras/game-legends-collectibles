@@ -48,8 +48,8 @@
                 Order Details
               </h5>
               <h6 th:text="'Phone number: '+${user.phoneNumber}">Phone number: </h6>
-              <h6 th:text="'Email: '+${user.email}">Correo: </h6>
-              <h6 th:text="'Address: '+${user.address}">Dirección: </h6>
+              <h6 th:text="'Email: '+${user.email}">Email: </h6>
+              <h6 th:text="'Address: '+${user.address}">Address: </h6>
 
               <div class="alert alert-light" role="alert">
                 <table class="table">
@@ -77,13 +77,13 @@
 
 
           <div class="col-lg-3">
-            <h2 class="card-title">Resumen Orden</h2>
+            <h2 class="card-title">Order Summary</h2>
 
             <ul class="list-group">
               <li class="list-group-item">
-                <h5 th:text="${total}+€"> Total:</h5>
+                <h5 th:text="${total}+€"> Total amount:</h5>
               </li>
-              <a th:href="@{/save-order}" class="btn btn-dark">Generar</a>
+              <a th:href="@{/save-order}" class="btn btn-dark">Place order</a>
             </ul>
           </div>
         </div>

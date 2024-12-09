@@ -71,7 +71,7 @@ public class GameLegendsCollectiblesController {
     @PostMapping("/admin/products/create")
     public String create(@ModelAttribute ProductDTO productDTO,@RequestParam MultipartFile img) throws IOException {
         productService.saveProduct(productDTO,img);
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
 
     @GetMapping("/admin/products/edit/{id}")
@@ -84,13 +84,13 @@ public class GameLegendsCollectiblesController {
     public String edit(@PathVariable Long id, @ModelAttribute ProductDTO productDTO,@RequestParam MultipartFile img) throws IOException {
         productDTO.setId(id);
         productService.saveProduct(productDTO, img);
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
 
     @GetMapping("/admin/products/delete/{id}")
     public String delete(@PathVariable Long id) {
         productService.deleteProductById(id);
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
     
     @GetMapping("/products/{id}")
@@ -235,7 +235,7 @@ public class GameLegendsCollectiblesController {
     public String orders(Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByUsername(username);
-        List<OrderDTO> orders = orderService.findByUser(user).stream().map(x -> new OrderDTO(x.getOrderNumber(), x.getCreatedAt().truncatedTo(ChronoUnit.DAYS),x.getTotalAmount())).collect(Collectors.toList());
+        List<OrderDTO> orders = orderService.findByUser(user).stream().map(x -> new OrderDTO(x.getOrderNumber(), x.getCreatedAt().toLocalDate(),x.getTotalAmount())).collect(Collectors.toList());
         model.addAttribute("orders",orders);
         return "orders";
     }
