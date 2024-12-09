@@ -4,13 +4,6 @@
         <div class="container">
             <a class="navbar-brand" th:href="@{/ecommerce}">Spring eCommerce</a>
 
-            <form class="form-inline my-2 my-lg-0" method="post" action="#">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="nombre"
-                    autocomplete="off">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
-
-
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -26,7 +19,8 @@
                         <div class="dropdown-menu"
                             aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/ecommerce/admin/products}">Products</a>
-                            <a class="dropdown-item" th:href="@{/ecommerce/profile}">Profile</a> 
+                            <a class="dropdown-item" th:href="@{/ecommerce/profile}">Profile</a>
+                            <a class="dropdown-item" th:href="@{/ecommerce/orders}">Orders</a>  
                             <form th:action="@{/ecommerce/auth/logout}" method="post" style="display: none;" id="logoutForm">
                                 <button type="submit" style="display: none;"></button>
                             </form>

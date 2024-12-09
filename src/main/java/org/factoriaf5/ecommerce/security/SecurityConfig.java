@@ -44,7 +44,7 @@ public class SecurityConfig{
         http.httpBasic(x -> x.disable());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(x -> x
-            .requestMatchers("/ecommerce/profile","/ecommerce/profile/**","/ecommerce/order-summary").authenticated()
+            .requestMatchers("/ecommerce/profile","/ecommerce/profile/**","/ecommerce/order-summary","/ecommerce/orders","/ecommerce/orders/**").authenticated()
             .requestMatchers("/ecommerce/admin/**").hasAuthority(User.Role.ROLE_ADMIN.name())
             .requestMatchers("/**").permitAll()
             .anyRequest().authenticated());

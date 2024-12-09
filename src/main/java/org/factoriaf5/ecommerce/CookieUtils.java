@@ -42,4 +42,12 @@ public class CookieUtils {
         cookie.setPath("/");
         return cookie;
     }
+
+    public Cookie deleteCartCookie(){
+        Cookie cookie = new Cookie("cart", null);
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        return cookie;
+    }
 }

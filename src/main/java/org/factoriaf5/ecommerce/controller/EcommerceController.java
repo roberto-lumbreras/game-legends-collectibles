@@ -3,6 +3,7 @@ package org.factoriaf5.ecommerce.controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.factoriaf5.ecommerce.CookieUtils;
 import org.factoriaf5.ecommerce.dto.CartItem;
+import org.factoriaf5.ecommerce.dto.OrderDTO;
 import org.factoriaf5.ecommerce.dto.ProductDTO;
 import org.factoriaf5.ecommerce.dto.UserDTO;
 import org.factoriaf5.ecommerce.model.Order;
@@ -202,7 +204,7 @@ public class EcommerceController {
     }
 
     @GetMapping("/save-order")
-    public String saveOrder(HttpServletRequest request) {
+    public String saveOrder(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
         List<CartItem> cartItems = cookieUtils.getCartProductsFromRequestCookie(request);
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.findByUsername(username);
@@ -219,15 +221,34 @@ public class EcommerceController {
             totalAmount = totalAmount.add(item.getUnitPrice().multiply(new BigDecimal(item.getQuantity())));
         }
         Order order = Order.builder()
-            .createdAt(LocalDateTime.now())
+            .createdAt(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
             .orderNumber(System.currentTimeMillis())
             .totalAmount(totalAmount)
             .details(details)
             .user(user)
             .build();
         orderService.save(order);
+        Cookie cookie = cookieUtils.deleteCartCookie();
+        response.addCookie(cookie);
         return "redirect:/ecommerce";
     }
+
+    @GetMapping("/orders")
+    public String orders(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findByUsername(username);
+        List<OrderDTO> orders = orderService.findByUser(user).stream().map(x -> new OrderDTO(x.getOrderNumber(), x.getCreatedAt().truncatedTo(ChronoUnit.DAYS),x.getTotalAmount())).collect(Collectors.toList());
+        model.addAttribute("orders",orders);
+        return "orders";
+    }
+
+    @GetMapping("/orders/{order-number}")
+    public String orderDetails(@PathVariable(name="order-number") Long orderNumber,Model model){
+        List<OrderDetail> details = orderService.findByOrderNumber(orderNumber).getDetails();
+        model.addAttribute("details", details);
+        return "order-details";
+    }
+    
     
     
     
