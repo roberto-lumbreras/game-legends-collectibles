@@ -2,6 +2,7 @@ package org.factoriaf5.game_legends_collectibles.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,14 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
-
-
-
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
     @Autowired
     AuthService authService;
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
+
     @PostMapping("/login")
     public String login(@ModelAttribute LoginRequest loginRequest, HttpServletResponse response) {
         String token = authService.login(loginRequest);
@@ -27,11 +36,13 @@ public class AuthController {
         response.addCookie(cookie);
         return "redirect:/";
     }
+
     @PostMapping("/register")
     public String register(@ModelAttribute RegisterRequest registerRequest, HttpServletResponse response) {
         authService.register(registerRequest);
         return login(new LoginRequest(registerRequest.username(), registerRequest.password()), response);
     }
+
     @PostMapping("/logout")
     public String logout(HttpServletResponse response) {
         Cookie cookie = new Cookie("token", null);
@@ -41,5 +52,5 @@ public class AuthController {
         response.addCookie(cookie);
         return "redirect:/";
     }
-    
+
 }

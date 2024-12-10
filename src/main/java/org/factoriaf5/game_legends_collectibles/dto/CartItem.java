@@ -16,11 +16,4 @@ public class CartItem {
     private Integer quantity;
     private BigDecimal unitPrice;
     private String productName;
-
-    public CartItem(Long productId, Integer quantity, BigDecimal unitPrice) {
-        this.productId = productId;
-        this.quantity = quantity;
-        this.unitPrice = unitPrice;
-    }
-    
 }

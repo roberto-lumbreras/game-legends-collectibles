@@ -22,8 +22,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig{
     @Autowired
-    JwtUtils jwtUtils;
-    @Autowired
     UserRepository userRepository;
 
     @Bean
@@ -44,10 +42,9 @@ public class SecurityConfig{
         http.httpBasic(x -> x.disable());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeHttpRequests(x -> x
-            .requestMatchers("/profile","/profile/**","/order-summary","/orders","/orders/**").authenticated()
+            .requestMatchers("/profile","/orders","/orders/**").authenticated()
             .requestMatchers("/admin/**").hasAuthority(User.Role.ROLE_ADMIN.name())
-            .requestMatchers("/**").permitAll()
-            .anyRequest().authenticated());
+            .requestMatchers("/**").permitAll());
         return http.build();
     }
 

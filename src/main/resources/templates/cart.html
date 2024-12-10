@@ -70,7 +70,7 @@
 
             <ul class="list-group">
               <li class="list-group-item"><h5 th:text = "${total}+€"></h5></li>
-              <a sec:authorize="isAuthenticated()" th:href="@{/order-summary}" class="btn btn-dark">See order</a>
+              <a sec:authorize="isAuthenticated()" th:href="@{/orders/summary}" class="btn btn-dark">See order</a>
               <a sec:authorize="isAnonymous()" th:href="@{/auth/login}" class="btn btn-dark">Log in to place an order</a>
             </ul>
           </div>

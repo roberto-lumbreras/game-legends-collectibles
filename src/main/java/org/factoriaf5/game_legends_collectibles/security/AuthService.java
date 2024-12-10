@@ -18,6 +18,7 @@ public class AuthService {
     JwtUtils jwtUtils;
     @Autowired
     PasswordEncoder passwordEncoder;
+    
     public String login(LoginRequest loginRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
         return jwtUtils.generateToken(loginRequest.username());
