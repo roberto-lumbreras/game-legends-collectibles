@@ -1,7 +1,10 @@
-package org.factoriaf5.game_legends_collectibles.security;
+package org.factoriaf5.game_legends_collectibles.service;
 
+import org.factoriaf5.game_legends_collectibles.dto.LoginRequest;
+import org.factoriaf5.game_legends_collectibles.dto.RegisterRequest;
 import org.factoriaf5.game_legends_collectibles.model.User;
 import org.factoriaf5.game_legends_collectibles.repository.UserRepository;
+import org.factoriaf5.game_legends_collectibles.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

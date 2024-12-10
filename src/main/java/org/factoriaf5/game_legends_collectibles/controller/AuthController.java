@@ -1,5 +1,8 @@
-package org.factoriaf5.game_legends_collectibles.security;
+package org.factoriaf5.game_legends_collectibles.controller;
 
+import org.factoriaf5.game_legends_collectibles.dto.LoginRequest;
+import org.factoriaf5.game_legends_collectibles.dto.RegisterRequest;
+import org.factoriaf5.game_legends_collectibles.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
