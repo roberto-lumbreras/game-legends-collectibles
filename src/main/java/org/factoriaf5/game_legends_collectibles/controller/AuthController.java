@@ -20,12 +20,12 @@ public class AuthController {
     AuthService authService;
 
     @GetMapping("/login")
-    public String login() {
+    public String getLoginView() {
         return "login";
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String getRegisterView() {
         return "register";
     }
 
