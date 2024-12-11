@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.factoriaf5.game_legends_collectibles.dto.CartItem;
 import org.factoriaf5.game_legends_collectibles.model.Order;
 import org.factoriaf5.game_legends_collectibles.model.OrderDetail;
 import org.factoriaf5.game_legends_collectibles.model.Product;
@@ -22,6 +23,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.jsonwebtoken.io.Encoders;
+import jakarta.servlet.http.Cookie;
 import jakarta.transaction.Transactional;
 
 @SpringBootTest
@@ -68,7 +73,10 @@ public class OrderControllerTest {
     }
 
     @Test
-    void testSaveOrder() {
-
+    void testSaveOrder() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/orders/save")
+        .cookie(new Cookie("cart",Encoders.BASE64.encode(new ObjectMapper().writeValueAsString(new CartItem(product.getId(), 1, product.getPrice(), product.getName())).getBytes())))
+        .with(SecurityMockMvcRequestPostProcessors.user("user").password("password").roles("USER")))
+        .andExpect(MockMvcResultMatchers.status().is3xxRedirection());
     }
 }
