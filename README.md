@@ -82,7 +82,13 @@ The application views are implemented using **Thymeleaf**. This template engine 
   For jwt.secret and jwt.expiration, you can set the following sample values:
   jwt.secret = MKQy8x6pClSK+aQXD0KHReVse/LWPdb3dwzt1ghdULM=
   jwt.expiration = 3600000   
-6. Run the application:
+7. Run the application:
    ````bash
    mvn spring-boot:run
-7. Access http://localhost:8080/ in you web browser and start tinkering with it! You can login as username -> admin , password -> password to get the admin privileges, requiered to perform CRUD operations for the available products
+8. Access http://localhost:8080/ in you web browser and start tinkering with it! You can login as username -> admin , password -> password to get the admin privileges, requiered to perform CRUD operations for the available products
+
+## Class diagram
+![Class diagram](diagrams/class-diagram.png)
+
+## Relational Model
+![Relational Model](diagrams/relational-model.png)
