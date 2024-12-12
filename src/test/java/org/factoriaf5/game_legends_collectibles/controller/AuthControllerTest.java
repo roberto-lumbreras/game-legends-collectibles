@@ -25,18 +25,4 @@ public class AuthControllerTest {
         .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    @Test
-    void testLogin() {
-
-    }
-
-    @Test
-    void testLogout() {
-
-    }
-
-    @Test
-    void testRegister() {
-
-    }
 }

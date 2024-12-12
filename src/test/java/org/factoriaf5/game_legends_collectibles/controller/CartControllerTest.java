@@ -13,10 +13,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class CartControllerTest {
     @Autowired
     MockMvc mockMvc;
-    @Test
-    void testAddToCart() {
-        
-    }
 
     @Test
     void testGetCartView() throws Exception {
@@ -24,8 +20,4 @@ public class CartControllerTest {
         .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    @Test
-    void testRemoveFromCart() {
-
-    }
 }
