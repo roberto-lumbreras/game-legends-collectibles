@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import org.factoriaf5.game_legends_collectibles.model.Product;
 import org.factoriaf5.game_legends_collectibles.repository.ProductRepository;
-import org.factoriaf5.game_legends_collectibles.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

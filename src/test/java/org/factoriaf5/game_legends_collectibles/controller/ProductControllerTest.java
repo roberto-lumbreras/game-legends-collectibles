@@ -2,6 +2,7 @@ package org.factoriaf5.game_legends_collectibles.controller;
 
 import java.math.BigDecimal;
 
+import org.factoriaf5.game_legends_collectibles.dto.ProductDTO;
 import org.factoriaf5.game_legends_collectibles.model.Product;
 import org.factoriaf5.game_legends_collectibles.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +31,7 @@ public class ProductControllerTest {
     @BeforeEach
     void setUp(){
         product = productRepository.save(new Product(null, "", "", "", new BigDecimal(0) , 0));
+        ProductDTO dto = new ProductDTO(product);
     }
 
     @Test

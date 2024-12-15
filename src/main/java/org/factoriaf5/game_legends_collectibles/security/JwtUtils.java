@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.ExpiredJwtException;
@@ -32,9 +33,9 @@ public class JwtUtils{
         return Jwts.parser().verifyWith(key()).build();
     }
 
-    public String generateToken(String username){
+    public String generateToken(){
         return Jwts.builder()
-        .subject(username)
+        .subject(SecurityContextHolder.getContext().getAuthentication().getName())
         .issuedAt(new Date())
         .expiration(new Date(System.currentTimeMillis()+expiration))
         .signWith(key())

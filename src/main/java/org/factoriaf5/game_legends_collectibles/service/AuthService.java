@@ -8,6 +8,7 @@ import org.factoriaf5.game_legends_collectibles.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class AuthService {
     PasswordEncoder passwordEncoder;
     
     public String login(LoginRequest loginRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
-        return jwtUtils.generateToken(loginRequest.username());
+        SecurityContextHolder.getContext().setAuthentication(authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()))); 
+        return jwtUtils.generateToken();
     }
     public void register(RegisterRequest registerRequest) {
         User user = User.builder()

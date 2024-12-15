@@ -8,27 +8,21 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AuthEntryPoint implements AuthenticationEntryPoint{
+public class AuthEntryPoint implements AuthenticationEntryPoint {
 
     AuthenticationEntryPoint authenticationEntryPoint = new Http403ForbiddenEntryPoint();
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
             AuthenticationException authException) throws IOException, ServletException {
-        if(authException instanceof UsernameNotFoundException){
-            Cookie cookie = new Cookie("token", null);
-            cookie.setHttpOnly(true);
-            cookie.setPath("/");
-            cookie.setMaxAge(0);
-            response.addCookie(cookie);
-            response.sendRedirect("/");
-        }else{
+        if (authException instanceof UsernameNotFoundException) {
+            response.sendRedirect("/auth/logout");
+        } else {
             authenticationEntryPoint.commence(request, response, authException);
         }
     }
-    
+
 }
