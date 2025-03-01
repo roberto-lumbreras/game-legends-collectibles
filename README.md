@@ -59,9 +59,7 @@ The application views are implemented using **Thymeleaf**. This template engine 
 
 ## Requirements
 
-- Java 21
-- Maven
-- MySQLServer
+- Docker
 
 ## Installation
 
@@ -74,18 +72,11 @@ The application views are implemented using **Thymeleaf**. This template engine 
    ````bash
    cd game-legends-collectibles
    
-3. Build the project:
+3. Build and deploy the project with Docker:
    ````bash
-   mvn clean install
-4. Create the database in you MySqlServer installation
-5. Adjust environment variables in application.properties according to your MySQL server configuration.
-  For jwt.secret and jwt.expiration, you can set the following sample values:
-  jwt.secret = MKQy8x6pClSK+aQXD0KHReVse/LWPdb3dwzt1ghdULM=
-  jwt.expiration = 3600000   
-7. Run the application:
-   ````bash
-   mvn spring-boot:run
-8. Access http://localhost:8080/ in you web browser and start tinkering with it! You can login as username -> admin , password -> password to get the admin privileges, requiered to perform CRUD operations for the available products
+   docker-compose up
+
+4. Access http://localhost:8080/ in you web browser and start tinkering with it! You can login as username -> admin , password -> password to get the admin privileges, requiered to perform CRUD operations for the available products
 
 ## Class diagram
 ![Class diagram](diagrams/class-diagram.png)
